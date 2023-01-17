@@ -7,10 +7,14 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import {AppComponent} from "./app.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import { FormsModule } from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {MatIconModule} from "@angular/material/icon";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatSelectModule} from "@angular/material/select";
+import {HttpClientModule} from "@angular/common/http";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MaterialExampleModule} from "../material.module";
 
 @NgModule({
   declarations: [
@@ -20,13 +24,14 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     HomeComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatFormFieldModule,
-    MatIconModule,
-    FormsModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    MaterialExampleModule,
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
