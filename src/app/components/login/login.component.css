@@ -16,12 +16,38 @@
   width: 30%;
   border-radius: 2%;
   box-shadow: gray 2px 2px 3px;
-  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 
 
+}
+.box div{
+  width: 100%;
 }
 .heading{
 
   font-size: 200%;
+  margin: 10% 0;
+  text-transform: uppercase;
+}
 
+.input{
+  width: 80%;
+  margin:0 10%;
+
+}
+
+.login-button{
+  height: 50px;
+  font-size: large;
+}
+
+
+.buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
