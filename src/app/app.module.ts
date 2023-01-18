@@ -13,13 +13,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialExampleModule } from '../material.module';
 import { RightPanelComponent } from './components/right-panel/right-panel.component';
 import { LeftPanelComponent } from './components/left-panel/left-panel.component';
 import { DailyTasksListComponent } from './components/daily-tasks-list/daily-tasks-list.component';
 import { TaskCardComponent } from './components/task-card/task-card.component';
+import { AuthService } from './services/auth.service';
+import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { AuthenticatedGuard } from './guards/authenticated.guard';
+const JWT_Module_Options: JwtModuleOptions = {
+  config: {},
+};
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SignupComponent, HomeComponent, RightPanelComponent, LeftPanelComponent, DailyTasksListComponent, TaskCardComponent],
@@ -33,8 +40,15 @@ import { TaskCardComponent } from './components/task-card/task-card.component';
     ReactiveFormsModule,
     AppRoutingModule,
     MatCardModule,
+        JwtModule.forRoot(JWT_Module_Options),
   ],
-  providers: [],
+  providers: [AuthService,AuthenticatedGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

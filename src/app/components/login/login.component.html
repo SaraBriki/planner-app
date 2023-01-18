@@ -1,35 +1,47 @@
-<div id="background" class="flexcenter">
-  <div class="box">
-    <h3 class="heading">Login</h3>
+<div id='background' class='flexcenter'>
+  <div class='box'>
+    <h3 class='heading'>Login</h3>
+
     <div>
-      <mat-form-field appearance="outline" class="input ">
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" [formControl]="email" required>
+      <mat-form-field appearance='outline' class='input '>
+        <mat-label>Enter your username</mat-label>
+        <input matInput placeholder='John Snow' [formControl]='username' required>
         <!--    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
       </mat-form-field>
 
     </div>
     <div>
-      <mat-form-field appearance="outline" class="input">
+      <mat-form-field appearance='outline' class='input'>
         <mat-label>Enter your password</mat-label>
-        <input matInput placeholder="********" [formControl]="password" required>
-        <!--    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+        <input matInput   placeholder='********' [type]="hide ? 'password' : 'text'"  [formControl]='password' required>
+        <button mat-icon-button matSuffix (click)='hide = !hide' [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]='hide'>
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
       </mat-form-field>
     </div>
     <div>
-      <button mat-raised-button color="primary" class="input login-button">Login</button>
+      <button mat-raised-button color='primary' class='input login-button'
+              (click)='login()'>
+        <span class='flexcenter' style='height: 100%'>
+        <p style='margin: 0;'>Login</p>
+        <span *ngIf='loading'>
+          <mat-spinner color='accent' [diameter]='29' [ngStyle]="{'margin-left':'5px'}"></mat-spinner>
+        </span>
+
+        </span>
+      </button>
     </div>
     <div>
-      <button mat-stroked-button color="primary" class="input login-button" style="margin-top:10%" >
-        Sign In with Google</button>
+      <button mat-stroked-button color='primary' class='input login-button' style='margin-top:10%'>
+        Sign In with Google
+      </button>
     </div>
     <div>
-      <button mat-stroked-button color="primary" class="input login-button" style="margin-top:3%" >
-        Sign In with Facebook</button>
+      <button mat-stroked-button color='primary' class='input login-button' style='margin-top:3%'>
+        Sign In with Facebook
+      </button>
     </div>
-
-
-
 
 
   </div>

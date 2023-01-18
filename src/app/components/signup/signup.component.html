@@ -1,36 +1,59 @@
-<div id="background" class="flexcenter">
-  <div class="box">
-    <h3 class="heading">Sign Up</h3>
+<div id='background' class='flexcenter'>
+  <div class='box'>
+    <h3 class='heading'>Sign Up</h3>
     <div>
-      <mat-form-field appearance="outline" class="input ">
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" [formControl]="email" required>
+      <mat-form-field appearance='outline' class='input '>
+        <mat-label>Enter your username</mat-label>
+        <input matInput placeholder='John Snow' [formControl]='username' required>
       </mat-form-field>
 
     </div>
     <div>
-      <mat-form-field appearance="outline" class="input">
-        <mat-label>Enter your password</mat-label>
-        <input matInput placeholder="********" [formControl]="password" minlength="8" required #passwordEl>
-        <mat-error *ngIf="password.invalid">password must have 8 characters or more</mat-error>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field appearance="outline" class="input">
-        <mat-label>Confirm your password</mat-label>
-        <input matInput placeholder="********" #confimPassowrdEl [formControl]="confirmPassword" (keyup)="checkPasswords(passwordEl.value,confimPassowrdEl.value)"  required>
-        <mat-error *ngIf="passwordsMatch">passwords do not match</mat-error>
-      </mat-form-field>
-    </div>
-    <div>
-      <button mat-raised-button color="primary" class="input login-button">Sign Up</button>
-    </div>
-    <div>
-      <button mat-stroked-button color="primary" class="input login-button" style="margin-top:10%">
-        Sign Up with Google
-      </button>
-    </div>
+
+      <div>
+        <mat-form-field appearance='outline' class='input'>
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" [formControl]='password' required placeholder='********'
+                 minlength='8'>
+          <button mat-icon-button matSuffix (click)='hide = !hide' [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]='hide'>
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf='password.invalid'>password must have 8 characters or more</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance='outline' class='input'>
+          <mat-label>Confirm your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" [formControl]='confirmPassword' required
+                 placeholder='********' minlength='8'>
+          <button mat-icon-button matSuffix (click)='hide = !hide' [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]='hide'>
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf='password.invalid'>password must have 8 characters or more</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-raised-button color='primary' class='input login-button'
+                (click)='signup()'>
+        <span class='flexcenter' style='height: 100%'>
+        <p style='margin: 0;'>Sign Up</p>
+        <span *ngIf='loading'>
+          <mat-spinner color='accent' [diameter]='29' [ngStyle]="{'margin-left':'5px'}"></mat-spinner>
+        </span>
+
+        </span>
+        </button>
+      </div>
+      <div>
+        <button mat-stroked-button color='primary' class='input login-button' style='margin-top:10%'>
+          Sign Up with Google
+        </button>
+      </div>
 
 
+    </div>
   </div>
 </div>
