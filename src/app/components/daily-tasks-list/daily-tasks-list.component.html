@@ -1,1 +1,6 @@
-<p>daily-tasks-list works!</p>
+<task-card
+  *ngFor="let task of tasks"
+  [description]="task.description"
+  [category]="task.category"
+>
+</task-card>

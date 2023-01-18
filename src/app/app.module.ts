@@ -19,9 +19,10 @@ import { MaterialExampleModule } from '../material.module';
 import { RightPanelComponent } from './components/right-panel/right-panel.component';
 import { LeftPanelComponent } from './components/left-panel/left-panel.component';
 import { DailyTasksListComponent } from './components/daily-tasks-list/daily-tasks-list.component';
+import { TaskCardComponent } from './components/task-card/task-card.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, HomeComponent, RightPanelComponent, LeftPanelComponent, DailyTasksListComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, HomeComponent, RightPanelComponent, LeftPanelComponent, DailyTasksListComponent, TaskCardComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,

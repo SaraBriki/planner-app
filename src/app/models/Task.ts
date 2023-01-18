@@ -1,4 +1,6 @@
-enum TaskCategory {
+import { Params } from '@angular/router';
+
+export enum TaskCategory {
   Groceries,
   Work,
   School,
@@ -6,7 +8,7 @@ enum TaskCategory {
   Other,
 }
 
-enum TaskStatus {
+export enum TaskStatus {
   Waiting,
   InProgress,
   Completed,
@@ -14,30 +16,30 @@ enum TaskStatus {
 }
 
 export class Task {
-  description: string = '';
-  estimatedTime: number = 0; // estimated time in minutes
-  category: TaskCategory = TaskCategory.Other;
-  dueDate: any = null;
-  elapsedTime: number = 0; // time spent on the task so far
-  status: TaskStatus = TaskStatus.Waiting;
-  statusMessage: string = '';
-  isImportant: boolean = false;
+  description: string;
+  estimatedTime: number; // estimated time in minutes
+  category: TaskCategory;
+  dueDate: any;
+  elapsedTime: number; // time spent on the task so far
+  status: TaskStatus;
+  statusMessage: string;
+  isImportant: boolean;
 
-  constructor(
-    description: string,
-    estimatedTime: number,
-    category: TaskCategory,
-    dueDate: Date,
-    elapsedTime: number,
-    status: TaskStatus,
-    isImportant: boolean
-  ) {
+  constructor({
+    description = '',
+    estimatedTime = 0,
+    category = TaskCategory.Other,
+    dueDate = null,
+    elapsedTime = 0,
+    status = TaskStatus.Waiting,
+    isImportant = false,
+  }: Params) {
     this.description = description;
     this.estimatedTime = estimatedTime;
     this.category = category;
     this.dueDate = dueDate;
     this.elapsedTime = elapsedTime;
-    this.status = status;
+    this.status = this.elapsedTime == 0 ? TaskStatus.Waiting : status;
     this.statusMessage = this.setStatusMessage();
     this.isImportant = isImportant;
   }
