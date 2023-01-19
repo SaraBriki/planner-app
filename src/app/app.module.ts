@@ -26,25 +26,25 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { MessageService } from './services/message.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { TaskService } from './services/tasks.service';
+
 const JWT_Module_Options: JwtModuleOptions = {
   config: {},
 };
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, HomeComponent, RightPanelComponent, LeftPanelComponent, DailyTasksListComponent, TaskCardComponent, NavbarComponent],
-  imports: [
-    BrowserAnimationsModule,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    MatNativeDateModule,
-    MaterialExampleModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    MatCardModule,
-        JwtModule.forRoot(JWT_Module_Options),
+  declarations: [
+    AppComponent,LoginComponent,SignupComponent, HomeComponent,
+    RightPanelComponent, LeftPanelComponent, DailyTasksListComponent,
+    TaskCardComponent, NavbarComponent,
   ],
-  providers: [AuthService,AuthenticatedGuard,MessageService,
+  imports: [
+    BrowserAnimationsModule, BrowserModule,FormsModule,HttpClientModule,
+    MatNativeDateModule, MaterialExampleModule, ReactiveFormsModule,
+    AppRoutingModule, MatCardModule, JwtModule.forRoot(JWT_Module_Options),
+  ],
+  providers: [AuthService, AuthenticatedGuard, MessageService,
+     TaskService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
@@ -53,4 +53,5 @@ const JWT_Module_Options: JwtModuleOptions = {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

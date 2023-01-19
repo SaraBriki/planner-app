@@ -1,4 +1,5 @@
 <div class='title '>{{title}}</div>
+<mat-spinner color='warn' [diameter]='50' [ngStyle]="{}" *ngIf='loading'></mat-spinner>
 <div cdkDropList class='example-list' (cdkDropListDropped)='drop($event)'>
   <task-card class='task-card example-box'
              *ngFor='let task of tasks'
