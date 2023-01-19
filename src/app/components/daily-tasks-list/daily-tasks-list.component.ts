@@ -25,19 +25,11 @@ export class DailyTasksListComponent implements OnInit {
     this.taskService.getTasksByDate(this.title).subscribe({
       next: (response) => {
         this.loading = false;
-        if(response){
-          console.log(response)
+        if (response) {
+          console.log(response);
           // @ts-ignore
-          this.tasks=  response['tasks'].map(
-            (description: string) => {
-              console.log(description)
-              return new Task({
-                description: description,
-                category: TaskCategory.SelfCare,
-                status: TaskStatus.Completed,
-              });
-            });
-          console.log(this.tasks)
+          this.tasks = response['tasks'];
+          console.log(this.tasks);
 
         }
       },
@@ -60,14 +52,8 @@ export class DailyTasksListComponent implements OnInit {
 
     this.nav.open();
     let obs = this.messageService.getMessage().subscribe({
-      next: (message: string) => {
-        this.tasks.push(
-          new Task({
-            description: message,
-            category: TaskCategory.Other,
-            status: TaskStatus.InProgress,
-          }),
-        );
+      next: (task: Task) => {
+        this.tasks.push(task);
         this.saveChanges();
         obs.unsubscribe();
         obs2.unsubscribe();
@@ -83,6 +69,10 @@ export class DailyTasksListComponent implements OnInit {
     });
   }
 
+  handleCompletedToggle() {
+    this.saveChanges();
+  }
+
   private saveChanges() {
     this._snackBar.open('saving changes...', undefined, { duration: 2000 });
     this.taskService.postTasks(this.title, this.tasks).subscribe({
@@ -95,5 +85,4 @@ export class DailyTasksListComponent implements OnInit {
     });
 
   }
-
 }

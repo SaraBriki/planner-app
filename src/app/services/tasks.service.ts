@@ -18,7 +18,7 @@ export class TaskService {
   postTasks(date: string, tasks: Task[]) {
     return this.http.post(tasksUrl, {
       date: date,
-      tasks: tasks.map((task: Task) => task.description),
+      tasks: tasks,
     });
 
 

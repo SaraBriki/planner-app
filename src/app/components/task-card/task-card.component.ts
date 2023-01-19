@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task, TaskCategory, TaskStatus } from 'src/app/models/Task';
 
 /**
@@ -9,12 +9,13 @@ import { Task, TaskCategory, TaskStatus } from 'src/app/models/Task';
   templateUrl: 'task-card.component.html',
   styleUrls: ['task-card.component.css'],
 })
-export class TaskCardComponent implements OnInit,AfterViewInit {
+export class TaskCardComponent implements OnInit, AfterViewInit {
   @Input() task: Task = new Task({
     description: 'Meditate & Yoga class.',
     category: TaskCategory.SelfCare,
     status: TaskStatus.Completed,
   });
+  @Output() completedToggle = new EventEmitter<boolean>();
   categoryStr: string = 'Other';
   completed = false;
 
@@ -24,10 +25,11 @@ export class TaskCardComponent implements OnInit,AfterViewInit {
   ngOnInit() {
     // @ts-ignore
     this.categoryStr = TaskCategory[this.task.category];
-    this.completed=this.task.status==TaskStatus.Completed
-    console.log(this.completed)
+    this.completed = this.task.status == TaskStatus.Completed;
+    console.log(this.completed);
   }
-  ngAfterViewInit(){
+
+  ngAfterViewInit() {
 
   }
 
@@ -35,6 +37,10 @@ export class TaskCardComponent implements OnInit,AfterViewInit {
     this.completed = !this.completed;
     if (this.completed)
       this.task.status = TaskStatus.Completed;
+    else
+      this.task.status = TaskStatus.InProgress;
+    this.completedToggle.emit(this.completed)
 
   }
+
 }

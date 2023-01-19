@@ -1,14 +1,24 @@
-<div style='display: flex;justify-content: flex-end'>
-  <button mat-mini-fab color='warn' (click)='close()'>
-    <mat-icon>close</mat-icon>
-</button>
+<div style='padding: 5%' class='bg'>
+  <div style='display: flex;justify-content: flex-end'>
+    <button mat-mini-fab color='warn' (click)='close()'>
+      <mat-icon>close</mat-icon>
+    </button>
 
-</div>
-<div style='display: flex;justify-content: center;flex-direction: column'>
-  <mat-form-field appearance='fill'>
-    <mat-label>Input</mat-label>
-    <input matInput [formControl]='description'>
-  </mat-form-field>
-  <button mat-stroked-button color='primary' (click)='save()'>Save Task</button>
+  </div>
+  <div style='display: flex;justify-content: center;flex-direction: column'>
+    <mat-form-field appearance='fill'>
+      <mat-label>Description</mat-label>
+      <input matInput [formControl]='description' required>
+    </mat-form-field>
+    <mat-form-field appearance="fill" >
+      <mat-label>Category</mat-label>
+      <mat-select [(value)]='selected'>
+        <mat-option *ngFor="let category of categories" [value]="category.value">
+          {{category.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color='accent' (click)='save()' style='height: 50px'>Save Task</button>
+  </div>
 
 </div>
