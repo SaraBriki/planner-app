@@ -1,4 +1,16 @@
-<div class="container">
-  <left-panel></left-panel>
-  <right-panel></right-panel>
-</div>
+<!--<mat-drawer-container class="example-container">-->
+<!--  <mat-drawer mode="side" opened><left-panel></left-panel></mat-drawer>-->
+<!--  <mat-drawer-content><right-panel style='width: 100%'></right-panel></mat-drawer-content>-->
+<!--</mat-drawer-container>-->
+
+<app-navbar></app-navbar>
+<mat-sidenav-container class="example-container" >
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened"  style='width: 30%'>
+    <left-panel [nav]='sidenav'></left-panel>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <right-panel style='width: 100%' [nav]='sidenav'></right-panel>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

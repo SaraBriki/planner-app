@@ -1,6 +1,11 @@
-<task-card
-  *ngFor="let task of tasks"
-  [description]="task.description"
-  [category]="task.category"
->
-</task-card>
+<div class='title '>{{title}}</div>
+<div cdkDropList class='example-list' (cdkDropListDropped)='drop($event)'>
+  <task-card class='task-card example-box'
+             *ngFor='let task of tasks'
+             [task]='task'
+             cdkDrag>
+  </task-card>
+      <button mat-raised-button color="accent" style='width: 80%; margin: 0 10%;height: 50px' (click)='addTask()'>Add Task</button>
+</div>
+
+

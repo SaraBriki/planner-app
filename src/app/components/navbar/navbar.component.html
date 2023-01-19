@@ -1,0 +1,12 @@
+<div class='navbar'>
+  <div></div>
+  <div >
+    <a routerLink='/login' (click)='logout()'>
+      <button mat-raised-button color='warn' class='butn'>{{authenticated? 'Logout':'Login'}}</button>
+    </a>
+    <a routerLink='/signup' *ngIf='!authenticated' >
+      <button mat-raised-button color='primary' class='butn' style='margin-right: 30px'>SignUp</button>
+    </a>
+  </div>
+
+</div>

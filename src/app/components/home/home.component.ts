@@ -8,4 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+   events: string[] = [];
+  opened: boolean=false;
 }

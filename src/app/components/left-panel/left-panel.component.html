@@ -1,1 +1,14 @@
-<p>left-panel works!</p>
+<div style='display: flex;justify-content: flex-end'>
+  <button mat-mini-fab color='warn' (click)='close()'>
+    <mat-icon>close</mat-icon>
+</button>
+
+</div>
+<div style='display: flex;justify-content: center;flex-direction: column'>
+  <mat-form-field appearance='fill'>
+    <mat-label>Input</mat-label>
+    <input matInput [formControl]='description'>
+  </mat-form-field>
+  <button mat-stroked-button color='primary' (click)='save()'>Save Task</button>
+
+</div>

@@ -24,12 +24,14 @@ import { AuthService } from './services/auth.service';
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
+import { MessageService } from './services/message.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
 const JWT_Module_Options: JwtModuleOptions = {
   config: {},
 };
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent, HomeComponent, RightPanelComponent, LeftPanelComponent, DailyTasksListComponent, TaskCardComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent, HomeComponent, RightPanelComponent, LeftPanelComponent, DailyTasksListComponent, TaskCardComponent, NavbarComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
@@ -42,7 +44,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     MatCardModule,
         JwtModule.forRoot(JWT_Module_Options),
   ],
-  providers: [AuthService,AuthenticatedGuard,
+  providers: [AuthService,AuthenticatedGuard,MessageService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
